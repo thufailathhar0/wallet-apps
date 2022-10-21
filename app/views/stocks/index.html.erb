@@ -1,0 +1,23 @@
+<h1>Stocks</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Type</th>
+      <th>Balance</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <tr>
+        <td><%= stock.name %></td>
+        <td><%= stock.code %></td>
+        <td><%= stock.types %></td>
+        <td><%= stock.balance %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

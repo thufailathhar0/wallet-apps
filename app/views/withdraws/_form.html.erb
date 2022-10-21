@@ -1,0 +1,47 @@
+<%= form_with(model: withdraw) do |form| %>
+  <% if withdraw.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(withdraw.errors.count, "error") %> prohibited this withdraw from being saved:</h2>
+
+      <ul>
+        <% withdraw.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :sender %>
+        <%= form.select :sender_id, options_for_select(Account.all.map{|c| [c.number, c.id]}, form.object.sender_id), {}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :receiver %>
+        <%= form.select :receiver_id, options_for_select(Stock.all.map{|c| [c.code, c.id]}, form.object.receiver_id), {}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :amount %>
+        <%= form.text_field :amount, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :receiver_number %>
+        <%= form.text_field :receiver_number, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

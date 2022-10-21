@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<div class="col-12">
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+	      <tr>
+	        <th>Number:</th>
+	        <td><%= @account.number %></td>
+	      </tr>
+	      <tr>
+	        <th>Name</th>
+	        <td><%= @account.user.name %></td>
+	      </tr>
+	      <tr>
+	        <th>Balance</th>
+	        <td><%= @account.Balance %></td>
+	      </tr>
+    	</tbody>
+    </table>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>

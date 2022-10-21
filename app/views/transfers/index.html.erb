@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Transfers</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Sender Account Number</th>
+      <th>Receiver Account Number</th>
+      <th>Amount</th>
+      <th colspan="2">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transfers.each do |transfer| %>
+      <tr>
+        <td><%= transfer.sender.number %></td>
+        <td><%= transfer.receiver.number %></td>
+        <td><%= transfer.amount %></td>
+        <td><%= link_to 'Show', transfer %></td>
+        <td><%= link_to 'Destroy', transfer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Transfer', new_transfer_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<div class="col-12">
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+	      <tr>
+	        <th>Sender Account Number</th>
+	        <td><%= @transfer.sender.number %></td>
+	      </tr>
+	      <tr>
+	        <th>Receiver Account Number</th>
+	        <td><%= @transfer.receiver.number %></td>
+	      </tr>
+	      <tr>
+	        <th>Amount</th>
+	        <td><%= @transfer.amount %></td>
+	      </tr>
+    	</tbody>
+    </table>
+  </div>
+</div>
+
+<%= link_to 'Back', transfers_path %>

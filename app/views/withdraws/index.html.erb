@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Withdraws</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Receiver Number</th>
+      <th>Amount</th>
+      <th colspan="2">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @withdraws.each do |withdraw| %>
+      <tr>
+        <td><%= withdraw.receiver_number %></td>
+        <td><%= withdraw.amount %></td>
+        <td><%= link_to 'Show', withdraw %></td>
+        <td><%= link_to 'Destroy', withdraw, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Withdraw', new_withdraw_path %>

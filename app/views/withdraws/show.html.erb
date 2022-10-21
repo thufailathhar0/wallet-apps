@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<div class="col-12">
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+	      <tr>
+	        <th>Receiver Number</th>
+	        <td><%= @withdraw.receiver_number %></td>
+	      </tr>
+	      <tr>
+	        <th>Amount</th>
+	        <td><%= @withdraw.amount %></td>
+	      </tr>
+    	</tbody>
+    </table>
+  </div>
+</div>
+
+<%= link_to 'Back', withdraws_path %>

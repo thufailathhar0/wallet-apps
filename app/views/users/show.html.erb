@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<div class="col-12">
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+	      <tr>
+	        <th>Name:</th>
+	        <td><%= @user.name %></td>
+	      </tr>
+	      <tr>
+	        <th>Phone Number</th>
+	        <td><%= @user.phone_number %></td>
+	      </tr>
+	      <tr>
+	        <th>Birth Date</th>
+	        <td><%= @user.birth_date&.strftime("%d %b %Y") %></td>
+	      </tr>
+    	</tbody>
+    </table>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
