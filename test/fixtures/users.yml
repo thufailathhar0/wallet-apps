@@ -4,8 +4,19 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  id: 1
+  name: "Test 1"
+  phone_number: "+6232123131"
+  birth_date: "20-10-2022"
+two:
+  id: 2
+  name: "Test 2"
+  phone_number: "+62321231323"
+  birth_date: "20-10-2022"
+three:
+  id: 3
+  name: "Test 2"
+  phone_number: "+62321231322131"
+  birth_date: "20-10-2022"
+

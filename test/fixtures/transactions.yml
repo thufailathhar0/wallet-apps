@@ -4,8 +4,20 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+one:
+  id: 1
+  fund_id: 1
+  fund_type: 'Deposit'
+  transactable_id: 1
+  transactable_type: 'Stock'
+  subject: 'sender'
 # column: value
 #
-two: {}
+two:
+  id: 2
+  fund_id: 1
+  fund_type: 'Deposit'
+  transactable_id: 1
+  transactable_type: 'Account'
+  subject: 'receiver'
 # column: value

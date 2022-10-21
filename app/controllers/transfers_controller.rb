@@ -47,16 +47,6 @@ class TransfersController < ApplicationController
     end
   end
 
-  # DELETE /transfers/1 or /transfers/1.json
-  def destroy
-    @transfer.destroy
-
-    respond_to do |format|
-      format.html { redirect_to transfers_url, notice: "Transfer was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transfer

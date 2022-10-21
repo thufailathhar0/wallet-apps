@@ -47,16 +47,6 @@ class WithdrawsController < ApplicationController
     end
   end
 
-  # DELETE /withdraws/1 or /withdraws/1.json
-  def destroy
-    @withdraw.destroy
-
-    respond_to do |format|
-      format.html { redirect_to withdraws_url, notice: "Withdraw was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_withdraw

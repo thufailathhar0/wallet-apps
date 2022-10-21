@@ -17,7 +17,7 @@ class DepositsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create deposit" do
     assert_difference('Deposit.count') do
-      post deposits_url, params: { deposit: {  } }
+      post deposits_url, params: { deposit: { sender_id: 1, receiver_id: 1, amount: 1000 } }
     end
 
     assert_redirected_to deposit_url(Deposit.last)
@@ -26,23 +26,5 @@ class DepositsControllerTest < ActionDispatch::IntegrationTest
   test "should show deposit" do
     get deposit_url(@deposit)
     assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_deposit_url(@deposit)
-    assert_response :success
-  end
-
-  test "should update deposit" do
-    patch deposit_url(@deposit), params: { deposit: {  } }
-    assert_redirected_to deposit_url(@deposit)
-  end
-
-  test "should destroy deposit" do
-    assert_difference('Deposit.count', -1) do
-      delete deposit_url(@deposit)
-    end
-
-    assert_redirected_to deposits_url
   end
 end

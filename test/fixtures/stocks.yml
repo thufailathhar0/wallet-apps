@@ -4,8 +4,18 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+one:
+  id: 1
+  name: 'Deposit'
+  code: 'd01'
+  types: 'deposit'
+  balance: 10000
 # column: value
 #
-two: {}
+two:
+  id: 2
+  name: 'Withdraw'
+  code: 'w01'
+  types: 'withdraw'
+  balance: 10000
 # column: value

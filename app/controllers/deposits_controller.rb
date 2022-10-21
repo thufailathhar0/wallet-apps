@@ -47,16 +47,6 @@ class DepositsController < ApplicationController
     end
   end
 
-  # DELETE /deposits/1 or /deposits/1.json
-  def destroy
-    @deposit.destroy
-
-    respond_to do |format|
-      format.html { redirect_to deposits_url, notice: "Deposit was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_deposit

@@ -17,7 +17,7 @@ class WithdrawsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create withdraw" do
     assert_difference('Withdraw.count') do
-      post withdraws_url, params: { withdraw: {  } }
+      post withdraws_url, params: { withdraw: { sender_id: 2, receiver_id: 2, amount: 1000, receiver_number: "123123123" } }
     end
 
     assert_redirected_to withdraw_url(Withdraw.last)
@@ -26,23 +26,5 @@ class WithdrawsControllerTest < ActionDispatch::IntegrationTest
   test "should show withdraw" do
     get withdraw_url(@withdraw)
     assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_withdraw_url(@withdraw)
-    assert_response :success
-  end
-
-  test "should update withdraw" do
-    patch withdraw_url(@withdraw), params: { withdraw: {  } }
-    assert_redirected_to withdraw_url(@withdraw)
-  end
-
-  test "should destroy withdraw" do
-    assert_difference('Withdraw.count', -1) do
-      delete withdraw_url(@withdraw)
-    end
-
-    assert_redirected_to withdraws_url
   end
 end

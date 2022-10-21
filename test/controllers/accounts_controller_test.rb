@@ -17,7 +17,7 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create account" do
     assert_difference('Account.count') do
-      post accounts_url, params: { account: {  } }
+      post accounts_url, params: { account: { number: "12345324277", user_id: 3 } }
     end
 
     assert_redirected_to account_url(Account.last)
@@ -34,15 +34,7 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update account" do
-    patch account_url(@account), params: { account: {  } }
+    patch account_url(@account), params: { account: { number: "12345677" } }
     assert_redirected_to account_url(@account)
-  end
-
-  test "should destroy account" do
-    assert_difference('Account.count', -1) do
-      delete account_url(@account)
-    end
-
-    assert_redirected_to accounts_url
   end
 end
