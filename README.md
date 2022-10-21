@@ -8,6 +8,6 @@ Please run
 
 3. rake db:migrate
 
-4. rake db:seeds
+4. rake db:seed
 
 Thufail Athhar Baihaqi
