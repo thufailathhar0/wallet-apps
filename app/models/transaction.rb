@@ -1,36 +1,25 @@
 class Transaction < ApplicationRecord
   extend Enumerize
 
-  belongs_to :fund, polymorphic: true
-  belongs_to :transactable, polymorphic: true
+  belongs_to :source, polymorphic: true
+  belongs_to :target, polymorphic: true
+  has_many :history_balances
 
-  enumerize :subject, in: %i[sender receiver]
+  enumerize :types, in: %i[deposit withdraw transfer], scope: true
 
   after_create :calculate_balance
 
+  validate :amount_correct
+  validates :amount, presence: true
+
+  def amount_correct
+    errors.add(:amount, 'Balance less than amount') if source.balance <= amount
+  end
+
   def calculate_balance
-    case self.subject
-
-    when 'sender'
-      self.transactable.update(balance: self.transactable.balance - self.fund.amount)
-    when 'receiver'
-      self.transactable.update(balance: self.transactable.balance + self.fund.amount)
-    end
-  end
-
-   def sender_address
-    if fund_type == 'Deposit'
-      fund.sender.code
-    else
-      fund.sender.number
-    end
-  end
-
-  def receiver_address
-    if fund_type == 'Withdraw'
-      fund.receiver.code
-    else
-      fund.receiver.number
-    end
-  end
+    source.update(balance: source.balance - amount)
+    history_balances.create(balance_before: (source.balance + amount), balance_after: source.balance, balancetable: source)
+    target.update(balance: target.balance + amount)
+    history_balances.create(balance_before: (target.balance - amount), balance_after: target.balance, balancetable: target)
+  end   
 end

@@ -2,7 +2,7 @@ require "test_helper"
 
 class DepositsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @deposit = deposits(:one)
+    @deposit = transactions(:one)
   end
 
   test "should get index" do
@@ -16,11 +16,11 @@ class DepositsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create deposit" do
-    assert_difference('Deposit.count') do
-      post deposits_url, params: { deposit: { sender_id: 1, receiver_id: 1, amount: 1000 } }
+    assert_difference('Transaction.count') do
+      post deposits_url, params: { transaction: { source_id: 1, target_id: 1, amount: 1000 } }
     end
 
-    assert_redirected_to deposit_url(Deposit.last)
+    assert_redirected_to deposit_url(Transaction.last)
   end
 
   test "should show deposit" do

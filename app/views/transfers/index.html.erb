@@ -15,8 +15,8 @@
   <tbody>
     <% @transfers.each do |transfer| %>
       <tr>
-        <td><%= transfer.sender.number %></td>
-        <td><%= transfer.receiver.number %></td>
+        <td><%= transfer.source.number %></td>
+        <td><%= transfer.target.number %></td>
         <td><%= transfer.amount %></td>
         <td><%= link_to 'Show', transfer %></td>
       </tr>

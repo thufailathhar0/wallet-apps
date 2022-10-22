@@ -4,8 +4,20 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: 
+one:
   id: 1
-  amount: 100
-  sender_id: 1
-  receiver_id: 2
+  transaction_id: 1
+  balancetable_id: 1
+  balancetable_type: 'Account'
+  balance_before: 0.0
+  balance_after: 100.0
+# column: value
+#
+two:
+  id: 2
+  transaction_id: 1
+  balancetable_id: 1
+  balancetable_type: 'Stock'
+  balance_before: 1000.0
+  balance_after: 900.0
+# column: value

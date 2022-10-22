@@ -3,7 +3,7 @@ class WithdrawsController < ApplicationController
 
   # GET /withdraws or /withdraws.json
   def index
-    @withdraws = Withdraw.all
+    @withdraws = Transaction.with_types(:withdraw)
   end
 
   # GET /withdraws/1 or /withdraws/1.json
@@ -12,7 +12,7 @@ class WithdrawsController < ApplicationController
 
   # GET /withdraws/new
   def new
-    @withdraw = Withdraw.new
+    @withdraw = Transaction.new
   end
 
   # GET /withdraws/1/edit
@@ -21,8 +21,10 @@ class WithdrawsController < ApplicationController
 
   # POST /withdraws or /withdraws.json
   def create
-    @withdraw = Withdraw.new(withdraw_params)
-    @withdraw.create_transaction
+    @withdraw = Transaction.new(withdraw_params)
+    @withdraw.types = "withdraw"
+    @withdraw.source_type = "Account"
+    @withdraw.target_type = "Stock"
     respond_to do |format|
       if @withdraw.save
         format.html { redirect_to withdraw_url(@withdraw), notice: "Withdraw was successfully created." }
@@ -50,11 +52,11 @@ class WithdrawsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_withdraw
-      @withdraw = Withdraw.find(params[:id])
+      @withdraw = Transaction.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def withdraw_params
-      params.require(:withdraw).permit(:sender_id, :receiver_id, :amount, :receiver_number)
+      params.require(:transaction).permit(:source_id, :target_id, :amount)
     end
 end

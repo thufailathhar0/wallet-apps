@@ -1,4 +1,4 @@
-<%= form_with(model: deposit) do |form| %>
+<%= form_with(model: deposit, url: deposits_path) do |form| %>
   <% if deposit.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(deposit.errors.count, "error") %> prohibited this deposit from being saved:</h2>
@@ -14,15 +14,15 @@
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
-        <%= form.label :sender %>
-        <%= form.select :sender_id, options_for_select(Stock.all.map{|c| [c.code, c.id]}, form.object.sender_id), {}, class: "form-control" %>
+        <%= form.label :source %>
+        <%= form.select :source_id, options_for_select(Stock.all.map{|c| [c.code, c.id]}, form.object.source_id), {}, class: "form-control" %>
       </div>
     </div>
 
     <div class="col-md-12">
       <div class="form-group">
-        <%= form.label :receiver %>
-        <%= form.select :receiver_id, options_for_select(Account.all.map{|c| [c.number, c.id]}, form.object.receiver_id), {}, class: "form-control" %>
+        <%= form.label :target %>
+        <%= form.select :target_id, options_for_select(Account.all.map{|c| [c.number, c.id]}, form.object.target_id), {}, class: "form-control" %>
       </div>
     </div>
 

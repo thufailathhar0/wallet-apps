@@ -2,7 +2,7 @@ require "test_helper"
 
 class TransfersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @transfer = transfers(:one)
+    @transfer = transactions(:two)
   end
 
   test "should get index" do
@@ -16,11 +16,11 @@ class TransfersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create transfer" do
-    assert_difference('Transfer.count') do
-      post transfers_url, params: { transfer: { sender_id: 2, receiver_id: 1, amount: 100 } }
+    assert_difference('Transaction.count') do
+      post transfers_url, params: { transaction: { source_id: 2, target_id: 1, amount: 100 } }
     end
 
-    assert_redirected_to transfer_url(Transfer.last)
+    assert_redirected_to transfer_url(Transaction.last)
   end
 
   test "should show transfer" do

@@ -1,38 +1,16 @@
 class CreateTransactions < ActiveRecord::Migration[6.1]
   def change
     create_table :transactions do |t|
-      t.string :code
-      t.bigint :fund_id
-      t.string :fund_type
-      t.bigint :transactable_id
-      t.string :transactable_type
-      t.string :subject
+      t.decimal :amount, precision: 5, scale: 2, default: 0, null: false
+      t.bigint  :source_id
+      t.string  :source_type
+      t.bigint  :target_id
+      t.string  :target_type
+      t.string  :types
       t.timestamps
     end
 
-    create_table :deposits do |t|
-      t.decimal    :amount, precision: 5, scale: 2, default: 0, null: false
-      t.references :sender, foreign_key: { to_table: :stocks }
-      t.references :receiver, foreign_key: { to_table: :accounts }
-      t.timestamps
-    end
-
-    create_table :withdraws do |t|
-      t.decimal    :amount, precision: 5, scale: 2, default: 0, null: false
-      t.string     :receiver_number
-      t.references :sender, foreign_key: { to_table: :accounts }
-      t.references :receiver, foreign_key: { to_table: :stocks }
-      t.timestamps
-    end
-
-    create_table :transfers do |t|
-      t.decimal    :amount, precision: 5, scale: 2, default: 0, null: false
-      t.references :sender, foreign_key: { to_table: :accounts }
-      t.references :receiver, foreign_key: { to_table: :accounts }
-      t.timestamps
-    end
-
-    add_index :transactions, %i[fund_id fund_type]
-    add_index :transactions, %i[transactable_id transactable_type]
+    add_index :transactions, %i[source_id source_type]
+    add_index :transactions, %i[target_id target_type]
   end
 end

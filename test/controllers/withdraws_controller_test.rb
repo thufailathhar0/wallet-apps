@@ -2,7 +2,7 @@ require "test_helper"
 
 class WithdrawsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @withdraw = withdraws(:one)
+    @withdraw = transactions(:three)
   end
 
   test "should get index" do
@@ -16,11 +16,11 @@ class WithdrawsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create withdraw" do
-    assert_difference('Withdraw.count') do
-      post withdraws_url, params: { withdraw: { sender_id: 2, receiver_id: 2, amount: 1000, receiver_number: "123123123" } }
+    assert_difference('Transaction.count') do
+      post withdraws_url, params: { transaction: { source_id: 2, target_id: 1, amount: 100 } }
     end
 
-    assert_redirected_to withdraw_url(Withdraw.last)
+    assert_redirected_to withdraw_url(Transaction.last)
   end
 
   test "should show withdraw" do

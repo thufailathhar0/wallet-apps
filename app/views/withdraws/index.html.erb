@@ -14,7 +14,7 @@
   <tbody>
     <% @withdraws.each do |withdraw| %>
       <tr>
-        <td><%= withdraw.receiver_number %></td>
+        <td><%= withdraw.target.code %></td>
         <td><%= withdraw.amount %></td>
         <td><%= link_to 'Show', withdraw %></td>
       </tr>

@@ -3,7 +3,7 @@ class TransfersController < ApplicationController
 
   # GET /transfers or /transfers.json
   def index
-    @transfers = Transfer.all
+    @transfers = Transaction.with_types(:transfer)
   end
 
   # GET /transfers/1 or /transfers/1.json
@@ -12,7 +12,7 @@ class TransfersController < ApplicationController
 
   # GET /transfers/new
   def new
-    @transfer = Transfer.new
+    @transfer = Transaction.new
   end
 
   # GET /transfers/1/edit
@@ -21,8 +21,10 @@ class TransfersController < ApplicationController
 
   # POST /transfers or /transfers.json
   def create
-    @transfer = Transfer.new(transfer_params)
-    @transfer.create_transaction
+    @transfer = Transaction.new(transfer_params)
+    @transfer.types = "transfer"
+    @transfer.source_type = "Account"
+    @transfer.target_type = "Account"
     respond_to do |format|
       if @transfer.save
         format.html { redirect_to transfer_url(@transfer), notice: "Transfer was successfully created." }
@@ -50,11 +52,11 @@ class TransfersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transfer
-      @transfer = Transfer.find(params[:id])
+      @transfer = Transaction.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def transfer_params
-      params.require(:transfer).permit(:amount, :receiver_id, :sender_id)
+      params.require(:transaction).permit(:source_id, :target_id, :amount)
     end
 end

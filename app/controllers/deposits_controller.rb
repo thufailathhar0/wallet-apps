@@ -3,7 +3,7 @@ class DepositsController < ApplicationController
 
   # GET /deposits or /deposits.json
   def index
-    @deposits = Deposit.all
+    @deposits = Transaction.with_types(:deposit)
   end
 
   # GET /deposits/1 or /deposits/1.json
@@ -12,7 +12,7 @@ class DepositsController < ApplicationController
 
   # GET /deposits/new
   def new
-    @deposit = Deposit.new
+    @deposit = Transaction.new
   end
 
   # GET /deposits/1/edit
@@ -21,8 +21,10 @@ class DepositsController < ApplicationController
 
   # POST /deposits or /deposits.json
   def create
-    @deposit = Deposit.new(deposit_params)
-    @deposit.create_transaction
+    @deposit = Transaction.new(deposit_params)
+    @deposit.types = "deposit"
+    @deposit.source_type = "Stock"
+    @deposit.target_type = "Account"
     respond_to do |format|
       if @deposit.save
         format.html { redirect_to deposit_url(@deposit), notice: "Deposit was successfully created." }
@@ -50,11 +52,11 @@ class DepositsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_deposit
-      @deposit = Deposit.find(params[:id])
+      @deposit = Transaction.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def deposit_params
-      params.require(:deposit).permit(:sender_id, :receiver_id, :amount)
+      params.require(:transaction).permit(:source_id, :target_id, :amount)
     end
 end

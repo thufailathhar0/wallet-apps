@@ -14,7 +14,7 @@
   <tbody>
     <% @deposits.each do |deposit| %>
       <tr>
-        <td><%= deposit.receiver.number %></td>
+        <td><%= deposit.target.number %></td>
         <td><%= deposit.amount %></td>
         <td><%= link_to 'Show', deposit %></td>
       </tr>

@@ -6,18 +6,28 @@
 #
 one:
   id: 1
-  fund_id: 1
-  fund_type: 'Deposit'
-  transactable_id: 1
-  transactable_type: 'Stock'
-  subject: 'sender'
+  source_id: 1
+  source_type: 'Stock'
+  target_id: 1
+  target_type: 'Account'
+  types: 'deposit'
+  amount: 100
 # column: value
 #
 two:
   id: 2
-  fund_id: 1
-  fund_type: 'Deposit'
-  transactable_id: 1
-  transactable_type: 'Account'
-  subject: 'receiver'
+  source_id: 1
+  source_type: 'Account'
+  target_id: 2
+  target_type: 'Account'
+  types: 'transfer'
+  amount: 100
 # column: value
+three:
+  id: 3
+  source_id: 1
+  source_type: 'Account'
+  target_id: 1
+  target_type: 'Stock'
+  types: 'withdraw'
+  amount: 100

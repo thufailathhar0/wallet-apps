@@ -24,6 +24,9 @@
           <li class="nav-item <%= "active" if @current_page == "accounts" %>">
             <a class="nav-link" href="<%= accounts_path %>">Account</a>
           </li>
+          <li class="nav-item <%= "active" if @current_page == "stocks" %>">
+            <a class="nav-link" href="<%= stocks_path %>">Stock</a>
+          </li>
           <li class="nav-item <%= "active" if @current_page == "deposits" %>">
             <a class="nav-link" href="<%= deposits_path %>">Deposit</a>
           </li>

@@ -5,26 +5,24 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Subject</th>
-      <th>Fund</th>
-      <th>Sender Address</th>
-      <th>Transactable</th>
-      <th>Receiver Address</th>
+      <th>Type</th>
+      <th>Account Number</th>
+      <th>Balance Before</th>
+      <th>Balance After</th>
       <th>Amount</th>
       <th>Created At</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @transactions.each do |transaction| %>
+    <% @transactions.each do |history| %>
       <tr>
-        <td><%= transaction.subject %></td>
-        <td><%= transaction.fund_type %></td>
-        <td><%= transaction.sender_address %></td>
-        <td><%= transaction.transactable_type %></td>
-        <td><%= transaction.receiver_address %></td>
-        <td><%= transaction.fund.amount %></td>
-        <td><%= transaction.created_at %></td>
+        <td><%= history.transac.types %></td>
+        <td><%= history.balancetable_address %></td>
+        <td><%= history.balance_before %></td>
+        <td><%= history.balance_after %></td>
+        <td><%= history.transac.amount %></td>
+        <td><%= history.transac.created_at %></td>
       </tr>
     <% end %>
   </tbody>

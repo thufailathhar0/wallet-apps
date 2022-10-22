@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_20_091434) do
+ActiveRecord::Schema.define(version: 2022_10_22_005929) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "number"
@@ -21,14 +21,15 @@ ActiveRecord::Schema.define(version: 2022_10_20_091434) do
     t.index ["user_id"], name: "index_accounts_on_user_id", unique: true
   end
 
-  create_table "deposits", force: :cascade do |t|
-    t.decimal "amount", precision: 5, scale: 2, default: "0.0", null: false
-    t.integer "sender_id"
-    t.integer "receiver_id"
+  create_table "history_balances", force: :cascade do |t|
+    t.integer "transaction_id"
+    t.bigint "balancetable_id"
+    t.string "balancetable_type"
+    t.decimal "balance_before"
+    t.decimal "balance_after"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["receiver_id"], name: "index_deposits_on_receiver_id"
-    t.index ["sender_id"], name: "index_deposits_on_sender_id"
+    t.index ["transaction_id"], name: "index_history_balances_on_transaction_id"
   end
 
   create_table "stocks", force: :cascade do |t|
@@ -41,26 +42,16 @@ ActiveRecord::Schema.define(version: 2022_10_20_091434) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.string "code"
-    t.bigint "fund_id"
-    t.string "fund_type"
-    t.bigint "transactable_id"
-    t.string "transactable_type"
-    t.string "subject"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["fund_id", "fund_type"], name: "index_transactions_on_fund_id_and_fund_type"
-    t.index ["transactable_id", "transactable_type"], name: "index_transactions_on_transactable_id_and_transactable_type"
-  end
-
-  create_table "transfers", force: :cascade do |t|
     t.decimal "amount", precision: 5, scale: 2, default: "0.0", null: false
-    t.integer "sender_id"
-    t.integer "receiver_id"
+    t.bigint "source_id"
+    t.string "source_type"
+    t.bigint "target_id"
+    t.string "target_type"
+    t.string "types"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["receiver_id"], name: "index_transfers_on_receiver_id"
-    t.index ["sender_id"], name: "index_transfers_on_sender_id"
+    t.index ["source_id", "source_type"], name: "index_transactions_on_source_id_and_source_type"
+    t.index ["target_id", "target_type"], name: "index_transactions_on_target_id_and_target_type"
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,22 +62,5 @@ ActiveRecord::Schema.define(version: 2022_10_20_091434) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "withdraws", force: :cascade do |t|
-    t.decimal "amount", precision: 5, scale: 2, default: "0.0", null: false
-    t.string "receiver_number"
-    t.integer "sender_id"
-    t.integer "receiver_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["receiver_id"], name: "index_withdraws_on_receiver_id"
-    t.index ["sender_id"], name: "index_withdraws_on_sender_id"
-  end
-
   add_foreign_key "accounts", "users"
-  add_foreign_key "deposits", "accounts", column: "receiver_id"
-  add_foreign_key "deposits", "stocks", column: "sender_id"
-  add_foreign_key "transfers", "accounts", column: "receiver_id"
-  add_foreign_key "transfers", "accounts", column: "sender_id"
-  add_foreign_key "withdraws", "accounts", column: "sender_id"
-  add_foreign_key "withdraws", "stocks", column: "receiver_id"
 end
